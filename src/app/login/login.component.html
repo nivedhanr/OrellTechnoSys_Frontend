@@ -1,0 +1,32 @@
+<app-navbar></app-navbar>
+<div class="container-login">
+    <img class="login" src="assets/image/R.png" alt="login-icon">
+      <div class="login-form">
+        <div class="login-head"> <h1>LOGIN</h1></div>
+        <br><br><br>
+            <form #loginForm="ngForm" (ngSubmit)="login()"> 
+                <div >
+                    <label for="username" class="form-label">User Name</label>
+                    <br>
+                    <input  name="username" type="text" class="form-control" [(ngModel)]="username" required #usernameField="ngModel">
+                    <div *ngIf="usernameField.invalid && (usernameField.dirty || usernameField.touched)">
+                        <small class="text-danger" *ngIf="usernameField.errors?.['required']">Username is required.</small>
+                    </div>
+                </div>
+  
+                <div >
+                    <label for="password" class="form-label">Password</label>
+                    <input name="password"  type="password" class="form-control" [(ngModel)]="password" required #passwordField="ngModel">
+                    <div *ngIf="passwordField.invalid && (passwordField.dirty || passwordField.touched)">
+                        <small class="text-danger" *ngIf="passwordField.errors?.['required']">Password is required.</small>
+                      </div>
+                </div> 
+                <div>
+                    <br>
+                    <button type="submit"  class="btn btn-success"  [disabled]="!loginForm.valid">Login</button>
+                </div> 
+            </form>
+                    
+            <a routerLink="/register" class="signup-link">Signup</a>
+          </div>
+</div>

@@ -1,0 +1,83 @@
+<app-navbar2></app-navbar2>
+
+
+<div class="form-container" *ngIf="userDetails && userDetails.technologies">
+    <div class="form-reg">
+      <div class="column">
+        <div *ngIf="!editMode">
+            <div *ngIf="imageDataUrl">
+                <label for="imgUrl" class="form-label">Profile Photo:</label>
+                <img [src]="imageDataUrl" alt="User Photo" class="image-size">
+              </div>
+        </div>
+        
+        <div>
+          <label for="name" class="form-label">Name</label>
+          <p class="form-control" *ngIf="!editMode">{{ userDetails?.name }}</p>
+          <input [(ngModel)]="userDetails.name" name="name" class="form-control" *ngIf="editMode" required />
+        </div>
+        
+        
+        <div>
+            <label for="dob" class="form-label">Date of Birth</label>
+            <p class="form-control" *ngIf="!editMode">{{ userDetails?.dob | date }}</p>
+            <input [(ngModel)]="userDetails.dob" name="dob" class="form-control" *ngIf="editMode"  />
+        </div>
+        <div>
+            <label for="phn" class="form-label" >Phone Number</label>
+            <p class="form-control" *ngIf="!editMode">{{ userDetails?.phn }}</p>
+            <input [(ngModel)]="userDetails.phn" name="phn" class="form-control" *ngIf="editMode" />
+        </div>
+        <div>
+            <label for="address" class="form-label">Address</label>
+            <p class="form-control" *ngIf="!editMode">{{ userDetails?.address }}</p>
+            <input [(ngModel)]="userDetails.address" name="address" class="form-control" *ngIf="editMode" />
+        </div>
+        <div>
+            <label for="district" class="form-label" >District</label>
+            <p class="form-control" *ngIf="!editMode">{{ userDetails?.district }}</p>
+            <input [(ngModel)]="userDetails.district" name="district" class="form-control" *ngIf="editMode" required />
+        </div>
+        <div>
+            <label for="gender" class="form-label" >Gender</label>
+            <p class="form-control" *ngIf="!editMode">{{ userDetails?.gender }}</p>
+            <input [(ngModel)]="userDetails.gender" name="gender" class="form-control" *ngIf="editMode" />
+        </div>
+    </div>
+    <div class="column">
+        <div>
+            <label for="technologies" class="form-label" >Language</label>
+            <p class="form-control" *ngIf="!editMode">{{ userDetails?.technologies }}</p>
+            <input [(ngModel)]="userDetails.technologies" name="technologies" class="form-control" *ngIf="editMode" />
+        </div>
+        <div>
+            <label for="email" class="form-label" >Email Id</label>
+            <p class="form-control" *ngIf="!editMode">{{ userDetails?.email }}</p>
+            <input [(ngModel)]="userDetails.email" name="email" class="form-control" *ngIf="editMode" />
+        </div>
+        <div>
+            <label for="username" class="form-label" >User Name</label>
+            <p class="form-control" *ngIf="!editMode">{{ userDetails?.username }}</p>
+            <input [(ngModel)]="userDetails.username" name="username" class="form-control" *ngIf="editMode" />
+        </div>
+        <div>
+            <label for="password" class="form-label" >Password</label>
+            <p class="form-control" *ngIf="!editMode">{{ userDetails?.password }}</p>
+            <input [(ngModel)]="userDetails.password" name="password" class="form-control" *ngIf="editMode" />
+        </div>
+        <div>
+            <label for="image" class="form-label">Update Profile Photo</label>
+            <input type="file" *ngIf="editMode" (change)="onImageChange($event)" accept="image/*" />
+          </div>
+        <div *ngIf="!editMode">
+          <button (click)="editMode = true">Edit Details</button>
+        </div>
+  
+        <div *ngIf="editMode">
+          <button (click)="saveChanges()">Save Changes</button>
+          <button (click)="cancelEdit()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

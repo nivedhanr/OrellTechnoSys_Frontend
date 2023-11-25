@@ -1,0 +1,147 @@
+<app-navbar></app-navbar>
+<div class="register-container">
+        <div class="form-reg">
+            <form class="form-group" [formGroup]="registrationForm" (ngSubmit)="onSubmit()" novalidate>
+                <div class="column">
+                    <div>
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" name="name" formControlName="name" id="name" class="form-control" required>
+                        <div *ngIf="registrationForm.get('name')?.hasError('required') && registrationForm.get('name')?.touched" class="error-text">
+                            Name is required.
+                        </div>
+                    </div>
+                    <div>
+                        <label for="dob" class="form-label">Date of Birth</label>
+                        <input type="date" name="dob" formControlName="dob" id="dob" class="form-control" required>
+                        <div *ngIf="registrationForm.get('dob')?.hasError('required') && registrationForm.get('dob')?.touched" class="error-text">
+                            Date of Birth is required.
+                        </div>
+                        <div *ngIf="registrationForm.get('dob')?.hasError('futureDate') && registrationForm.get('dob')?.touched" class="error-text">
+                            Please select a date in the past.
+                          </div>
+                    </div>
+                    <div>
+                        <label for="phn" class="form-label">Phn no:</label>
+                        <input type="number" class="form-control" name="phn" formControlName="phn" required>
+                        <div *ngIf="registrationForm.get('phn')?.hasError('required') && registrationForm.get('phn')?.touched" class="error-text">
+                            Phone Number is required.
+                        </div>
+                        <div *ngIf="registrationForm.get('phn')?.hasError('pattern')" class="error-text">
+                            Please enter a valid phone number.
+                          </div>
+                    </div>
+                    <div>
+                        <label for="address" class="form-label">Address</label>
+                        <textarea class="form-control" name="address" formControlName="address" id="address" rows="3" required></textarea>
+                        <div *ngIf="registrationForm.get('address')?.hasError('required') && registrationForm.get('address')?.touched" class="error-text">
+                            Address is required.
+                        </div>
+                    </div>
+                    <div>
+                        <label for="district" class="form-label">District</label>
+                        <select class="form-select" name="district" formControlName="district" id="district" required>
+                            <option selected disabled value="">Choose...</option>
+                            <option>Ernakulam</option>
+                            <option>Thrissur</option>
+                        </select>
+                        <div *ngIf="registrationForm.get('district')?.hasError('required') && registrationForm.get('district')?.touched" class="error-text">
+                            District is required.
+                        </div>
+                    </div>
+                    <div>
+                        <label for="gender" class="form-label">Gender</label>
+                        <br>
+                        <div>
+                        <label for="female">
+                            <input type="radio" name="gender" value="Female" formControlName="gender" >Female
+                        </label>
+                        </div>
+                        <div>
+                        <label for="male">
+                            <input type="radio" name="gender" value="Male" formControlName="gender" >Male
+                        </label>
+                        </div>
+                        <div *ngIf="registrationForm.get('gender')?.hasError('required') && registrationForm.get('gender')?.touched" class="error-text">
+                            Gender is required.
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div>
+                        <label for="technologies" class="form-label">Language</label>
+                        
+                        <div>
+                            <label for="java">
+                                <input type="checkbox" id="java" name="java" (change)="toggleTechnology('Java')" [checked]="isTechnologySelected('Java')">Java
+                            </label>
+                        </div>  
+                        <div>
+                            <label for="python">
+                                <input type="checkbox" id="python" name="python" (change)="toggleTechnology('Python')" [checked]="isTechnologySelected('Python')">Python
+                            </label>
+                        </div>
+                        
+                        <div *ngIf="registrationForm.get('technologies')?.hasError('required') && registrationForm.get('technologies')?.touched" class="error-text">
+                            At least one language must be selected.
+                          </div>
+                    </div>
+                    <div>
+                        <label for="email" class="form-label">Email Id</label>
+                        <input type="email" class="form-control" name="email" formControlName="email" required>
+                        <div *ngIf="registrationForm.get('email')?.hasError('required') && registrationForm.get('email')?.touched" class="error-text">
+                            Email is required.
+                          </div>
+                          <!-- <div *ngIf="registrationForm.get('email')?.hasError('email') && registrationForm.get('email')?.touched" class="error-text">
+                            Invalid email format.
+                          </div> -->
+                          <div *ngIf="registrationForm.get('email')?.hasError('invalidGmail') && registrationForm.get('email')?.touched" class="error-text">
+                            Invalid email format. Please use a Gmail address.
+                          </div>
+                    </div>
+                    <div>
+                        <label for="username" class="form-label">User Name</label>
+                        <input type="text" class="form-control" name="username" formControlName="username" required>
+                        <div *ngIf="registrationForm.get('username')?.hasError('required') && registrationForm.get('username')?.touched" class="error-text">
+                            Username is required.
+                        </div>
+                    </div>
+                    <div>
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" name="password" formControlName="password" required>
+                        <div *ngIf="registrationForm.get('password')?.hasError('required') && registrationForm.get('password')?.touched" class="error-text">
+                            Password is required.
+                        </div>
+                        <div *ngIf="registrationForm.get('password')?.hasError('minlength') && registrationForm.get('password')?.touched" class="error-text">
+                            Password must be at least 6 characters long.
+                        </div>
+                    </div>
+                    <div>
+                        <label for="conpass" class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control" name="con_password" formControlName="con_password" required>
+                        <div *ngIf="registrationForm.get('con_password')?.hasError('required') && registrationForm.get('con_password')?.touched" class="error-text">
+                            Confirm Password is required.
+                        </div>
+                        <div *ngIf="registrationForm.get('con_password')?.hasError('minlength') && registrationForm.get('con_password')?.touched" class="error-text">
+                            Confirm Password must be at least 6 characters long.
+                        </div>
+                        <div *ngIf="registrationForm.hasError('passwordsNotMatch') && registrationForm.get('con_password')?.touched" class="error-text">
+                            Password and Confirm Password do not match.
+                        </div>
+                    </div>
+                    <div>
+                        <label for="image">Upload Photo:</label>
+                        <input type="file"  (change)="onImageChange($event)" accept="image/*">
+                        <img [src]="getImgUrl()" height="200" *ngIf="image">
+
+                    </div>
+                    
+                    <div>
+                        <br>
+                        <button type="submit" class="btn btn-success" [disabled]="!registrationForm.valid" >Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <img class="reg-logo" src="assets/image/Register.png" alt="register-logo">
+    </div>
+    

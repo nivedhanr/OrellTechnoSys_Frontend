@@ -1,0 +1,27 @@
+.form-container {
+    background: linear-gradient(45deg, rgb(129, 129, 129) 0%, rgb(206, 205, 207) 100%);  /* Use your desired color code or name */
+    padding: 20px; /* Add padding for spacing */
+    border-radius: 5px; /* Add rounded corners for a card-like effect */
+    
+    .form-label{
+        font-weight: bold;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .form-control {
+        /* border:1px; */
+        background-color: transparent;
+        padding: 3px 0;
+        margin-left: 20px;
+        margin-right: 20px;
+        width: 1140px;
+        height: 30px;
+    }
+    .image-size {
+        width: 150px;
+        height: 150px;
+      }
+    
+
+}

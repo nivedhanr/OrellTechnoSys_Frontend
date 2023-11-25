@@ -1,0 +1,63 @@
+<app-navbar></app-navbar>
+<div class="register-container">
+    <div class="form-reg">
+        <form class="form-group" >
+            <!-- [formGroup]="registrationForm" (ngSubmit)="onSubmit()" novalidate -->
+            <div class="column">
+                <div>
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" name="name" formControlName="name" id="name" class="form-control" required>
+                    
+                </div>
+                <div>
+                    <label for="dob" class="form-label">Date of Birth</label>
+                    <input type="date" name="dob" formControlName="dob" id="dob" class="form-control" required>
+                    
+                </div>
+                <div>
+                    <br>
+                    <button type="submit" class="btn btn-success"  >Filter</button>
+                    <!-- <button type="submit"  class="btn btn-success" (click)="viewAll()" >View All</button> -->
+                    <!-- [disabled]="!registrationForm.valid" -->
+                </div>
+            </div>
+        </form>
+
+        <!-- app.component.html -->
+
+<table class="table" >
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Date of Birth</th>
+        <th>Email</th>
+        <th>Phn no</th>
+        <th>Address</th>
+        <th>District</th>
+        <th>Gender</th>
+        <th>technologies</th>
+        <th>Username</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of userDetails">
+        
+        <td>{{user.name}}</td>
+        <td>{{user.dob}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.phn}}</td>
+        <td>{{user.address}}</td>
+        <td>{{user.district}}</td>
+        <td>{{user.gender}}</td>
+        <td>{{user.technologies}}</td>
+        <td>{{user.username}}</td>
+        
+      </tr>
+    </tbody>
+  </table>
+  
+
+
+    </div>
+</div>
